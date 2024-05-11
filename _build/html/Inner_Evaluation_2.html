@@ -1,0 +1,888 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Parkinson Severity Classification: Inner Evaluation 2 &#8212; Parkinson Severity Detection</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Inner_Evaluation_2';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Parkinson Severity Classification: Inner Evaluation 3" href="Inner_Evaluation_3.html" />
+    <link rel="prev" title="Parkinson Severity Classification: Inner Evaluation 1" href="Inner_Evaluation_1.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.jpeg" class="logo__image only-light" alt="Parkinson Severity Detection - Home"/>
+    <script>document.write(`<img src="_static/logo.jpeg" class="logo__image only-dark" alt="Parkinson Severity Detection - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Welcome to your Jupyter Book
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Audio_Processing.html"><strong>Parkinson Severity Classification: Audio Processing</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="Inner_Evaluation_1.html"><strong>Parkinson Severity Classification: Inner Evaluation 1</strong></a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#"><strong>Parkinson Severity Classification: Inner Evaluation 2</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="Inner_Evaluation_3.html"><strong>Parkinson Severity Classification: Inner Evaluation 3</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="Inner_Evaluation_4.html"><strong>Parkinson Severity Classification: Inner Evaluation 4</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="Inner_Evaluation_5.html"><strong>Parkinson Severity Classification: Inner Evaluation 5</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="Best_Pipeline_Selection.html"><strong>Parkinson Severity Classification: Selecting the best pipeline</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="Outer_Evaluation.html"><strong>Parkinson Severity Classification: Outer Evaluation</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="Final_Model.html"><strong>Parkinson Severity Classification: Final Model</strong></a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/FabioScielzoOrtiz/Parkinson-Level-Detection" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/FabioScielzoOrtiz/Parkinson-Level-Detection/issues/new?title=Issue%20on%20page%20%2FInner_Evaluation_2.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/Inner_Evaluation_2.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Parkinson Severity Classification: Inner Evaluation 2</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#requirements"><strong>Requirements</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-definition"><strong>Data definition</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#outer-validation-method-train-test-split"><strong>Outer validation method: train-test split</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#applying-inner-evaluation"><strong>Applying Inner Evaluation</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inner-validation-method-kfold-cross-validation"><strong>Inner validation method: KFold Cross Validation</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#grids-for-hpo"><strong>Grids for HPO</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#grid-for-random-forest">Grid for Random Forest</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hpo"><strong>HPO</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#hpo-for-random-forest">HPO for Random Forest</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#saving-the-results">Saving the results</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#opening-the-results">Opening the results</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#selecting-the-best-pipeline"><strong>Selecting the best pipeline</strong></a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="parkinson-severity-classification-inner-evaluation-2">
+<h1><strong>Parkinson Severity Classification: Inner Evaluation 2</strong><a class="headerlink" href="#parkinson-severity-classification-inner-evaluation-2" title="Link to this heading">#</a></h1>
+<blockquote>
+<div><p><strong>More exhaustive HPO over Random Forest using the top 10 feature extraction methods according to the first round  of the  inner evaluation</strong></p>
+</div></blockquote>
+<p>This is the second round of the inner evaluation and is oriented to apply a more exhaustive HPO on Random Forest for the top 10 features extraction methods found on the previous round.</p>
+<p>The idea is trying to find an even best version of Random Forest for carrying out our classification task.</p>
+<section id="requirements">
+<h2><strong>Requirements</strong><a class="headerlink" href="#requirements" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span>  <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">polars</span> <span class="k">as</span> <span class="nn">pl</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">pickle</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestClassifier</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set_style</span><span class="p">(</span><span class="s1">&#39;whitegrid&#39;</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span><span class="p">,</span> <span class="n">StratifiedKFold</span>
+<span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">combinations</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;C:\Users\fscielzo\Documents\Packages\PyML_Package_Private&#39;</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">PyML.evaluation</span> <span class="kn">import</span> <span class="n">SimpleEvaluation</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;C:\Users\fscielzo\Documents\Packages\PyAudio_Package_Private&#39;</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">PyAudio</span> <span class="kn">import</span> <span class="n">get_X_audio_features</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="data-definition">
+<h2><strong>Data definition</strong><a class="headerlink" href="#data-definition" title="Link to this heading">#</a></h2>
+<p>In this section we define the data to be used. Specifically we define the response variable and a set of predictors matrices to be used as different alternatives, each one associate to a combination of features extraction methods and statistics.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">files_list_name</span> <span class="o">=</span> <span class="s1">&#39;Files_List.txt&#39;</span>
+<span class="n">files_df</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">files_list_name</span><span class="p">,</span> <span class="n">separator</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">has_header</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">new_columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;path&#39;</span><span class="p">,</span> <span class="s1">&#39;level&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We define the parameters to be used by the features extraction methods.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fs</span> <span class="o">=</span> <span class="mi">16000</span> <span class="c1"># Sampling frequency</span>
+<span class="n">wst</span> <span class="o">=</span> <span class="mf">0.032</span> <span class="c1"># Window size (seconds)</span>
+<span class="n">fpt</span> <span class="o">=</span> <span class="mf">0.008</span> <span class="c1"># Frame period (seconds)</span>
+<span class="n">nfft</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">wst</span><span class="o">*</span><span class="n">fs</span><span class="p">))</span> <span class="c1"># Window size (samples)</span>
+<span class="n">fp</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">fpt</span><span class="o">*</span><span class="n">fs</span><span class="p">))</span> <span class="c1"># Frame period (samples)</span>
+<span class="n">nbands</span> <span class="o">=</span> <span class="mi">40</span> <span class="c1"># Number of filters in the filterbank</span>
+<span class="n">ncomp</span> <span class="o">=</span> <span class="mi">20</span> <span class="c1"># Number of MFCC components</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>In the next cell we define the response variable (target) and the different predictors matrices mentioned above.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Y</span> <span class="o">=</span> <span class="n">files_df</span><span class="p">[</span><span class="s1">&#39;level&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+
+<span class="n">simple_methods</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;MFCC&#39;</span><span class="p">,</span> <span class="s1">&#39;spectral_centroid&#39;</span><span class="p">,</span> <span class="s1">&#39;chroma&#39;</span><span class="p">,</span> <span class="s1">&#39;spectral_bandwidth&#39;</span><span class="p">,</span> 
+                  <span class="s1">&#39;spectral_contrast&#39;</span><span class="p">,</span> <span class="s1">&#39;spectral_rolloff&#39;</span><span class="p">,</span> <span class="s1">&#39;zero_crossing_rate&#39;</span><span class="p">,</span> <span class="s1">&#39;tempogram&#39;</span><span class="p">]</span>
+
+<span class="n">combined_methods</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="n">stats</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;mean-std&#39;</span><span class="p">,</span> <span class="s1">&#39;median-std&#39;</span><span class="p">,</span> <span class="s1">&#39;mean-median-std&#39;</span><span class="p">,</span> <span class="s1">&#39;mean-Q25-median-Q75-std&#39;</span><span class="p">]</span>
+
+<span class="n">sizes</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">simple_methods</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="n">combined_methods</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;-&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">combi</span><span class="p">))</span> <span class="k">for</span> <span class="n">size</span> <span class="ow">in</span> <span class="n">sizes</span> <span class="k">for</span> <span class="n">combi</span> <span class="ow">in</span> <span class="n">combinations</span><span class="p">(</span><span class="n">simple_methods</span><span class="p">,</span> <span class="n">size</span><span class="p">)]</span>
+
+<span class="n">X_stats</span><span class="p">,</span> <span class="n">X_stats_train</span><span class="p">,</span> <span class="n">X_stats_test</span> <span class="o">=</span> <span class="p">{</span><span class="n">method</span><span class="p">:</span> <span class="p">{}</span> <span class="k">for</span> <span class="n">method</span> <span class="ow">in</span> <span class="n">simple_methods</span> <span class="o">+</span> <span class="n">combined_methods</span><span class="p">},</span> <span class="p">{</span><span class="n">method</span><span class="p">:</span> <span class="p">{}</span> <span class="k">for</span> <span class="n">method</span> <span class="ow">in</span> <span class="n">simple_methods</span> <span class="o">+</span> <span class="n">combined_methods</span><span class="p">},</span> <span class="p">{</span><span class="n">method</span><span class="p">:</span> <span class="p">{}</span> <span class="k">for</span> <span class="n">method</span> <span class="ow">in</span> <span class="n">simple_methods</span> <span class="o">+</span> <span class="n">combined_methods</span><span class="p">}</span>
+
+<span class="k">for</span> <span class="n">method</span> <span class="ow">in</span> <span class="n">simple_methods</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">stat</span> <span class="ow">in</span> <span class="n">stats</span><span class="p">:</span>
+
+        <span class="n">X_stats</span><span class="p">[</span><span class="n">method</span><span class="p">][</span><span class="n">stat</span><span class="p">]</span> <span class="o">=</span> <span class="n">get_X_audio_features</span><span class="p">(</span><span class="n">paths</span><span class="o">=</span><span class="n">files_df</span><span class="p">[</span><span class="s1">&#39;path&#39;</span><span class="p">],</span> <span class="n">method</span><span class="o">=</span><span class="n">method</span><span class="p">,</span> <span class="n">stats</span><span class="o">=</span><span class="n">stat</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="n">fs</span><span class="p">,</span> <span class="n">n_fft</span><span class="o">=</span><span class="n">nfft</span><span class="p">,</span> <span class="n">hop_length</span><span class="o">=</span><span class="n">fp</span><span class="p">,</span> <span class="n">n_mels</span><span class="o">=</span><span class="n">nbands</span><span class="p">,</span> <span class="n">n_mfcc</span><span class="o">=</span><span class="n">ncomp</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">method</span> <span class="ow">in</span> <span class="n">combined_methods</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">stat</span> <span class="ow">in</span> <span class="n">stats</span><span class="p">:</span>
+
+        <span class="n">X_stats</span><span class="p">[</span><span class="n">method</span><span class="p">][</span><span class="n">stat</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">([</span><span class="n">X_stats</span><span class="p">[</span><span class="n">method</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)[</span><span class="n">i</span><span class="p">]][</span><span class="n">stat</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">method</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)))])</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="outer-validation-method-train-test-split">
+<h2><strong>Outer validation method: train-test split</strong><a class="headerlink" href="#outer-validation-method-train-test-split" title="Link to this heading">#</a></h2>
+<p>We split our data (response and predictors) in two partitions, the training and the testing one. The training partition will be used in the inner evaluation for selecting the best approach to predict the PD level, and the test one will only be used at the very end for making an estimation of the future performance of the best approach, that is, and estimation of how this approach will classify the level of PD of new patients.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">method</span> <span class="ow">in</span> <span class="n">simple_methods</span> <span class="o">+</span> <span class="n">combined_methods</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">stat</span> <span class="ow">in</span> <span class="n">stats</span><span class="p">:</span>
+        <span class="n">X_stats_train</span><span class="p">[</span><span class="n">method</span><span class="p">][</span><span class="n">stat</span><span class="p">],</span> <span class="n">X_stats_test</span><span class="p">[</span><span class="n">method</span><span class="p">][</span><span class="n">stat</span><span class="p">],</span> <span class="n">Y_train</span><span class="p">,</span> <span class="n">Y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X_stats</span><span class="p">[</span><span class="n">method</span><span class="p">][</span><span class="n">stat</span><span class="p">],</span> <span class="n">Y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">123</span><span class="p">,</span> <span class="n">stratify</span><span class="o">=</span><span class="n">Y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="applying-inner-evaluation">
+<h2><strong>Applying Inner Evaluation</strong><a class="headerlink" href="#applying-inner-evaluation" title="Link to this heading">#</a></h2>
+<p>In this section we are going to apply the round two of the inner evaluation.</p>
+<section id="inner-validation-method-kfold-cross-validation">
+<h3><strong>Inner validation method: KFold Cross Validation</strong><a class="headerlink" href="#inner-validation-method-kfold-cross-validation" title="Link to this heading">#</a></h3>
+<p>We define the validation method to be used in the inner evaluation, that will be Stratified KFold Cross Validation.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">inner</span> <span class="o">=</span> <span class="n">StratifiedKFold</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">123</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We define dictionaries to save important results that will be gathered in the inner evaluation.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">inner_score</span><span class="p">,</span> <span class="n">best_params</span><span class="p">,</span> <span class="n">inner_results</span> <span class="o">=</span> <span class="p">{</span><span class="n">method</span><span class="p">:</span> <span class="p">{</span><span class="n">stat</span><span class="p">:</span> <span class="p">{}</span> <span class="k">for</span> <span class="n">stat</span> <span class="ow">in</span> <span class="n">stats</span><span class="p">}</span> <span class="k">for</span> <span class="n">method</span> <span class="ow">in</span> <span class="n">simple_methods</span> <span class="o">+</span> <span class="n">combined_methods_flatten</span><span class="p">},</span> <span class="p">{</span><span class="n">method</span><span class="p">:</span> <span class="p">{</span><span class="n">stat</span><span class="p">:</span> <span class="p">{}</span> <span class="k">for</span> <span class="n">stat</span> <span class="ow">in</span> <span class="n">stats</span><span class="p">}</span> <span class="k">for</span> <span class="n">method</span> <span class="ow">in</span> <span class="n">simple_methods</span> <span class="o">+</span> <span class="n">combined_methods_flatten</span><span class="p">},</span> <span class="p">{</span><span class="n">method</span><span class="p">:</span> <span class="p">{</span><span class="n">stat</span><span class="p">:</span> <span class="p">{}</span> <span class="k">for</span> <span class="n">stat</span> <span class="ow">in</span> <span class="n">stats</span><span class="p">}</span> <span class="k">for</span> <span class="n">method</span> <span class="ow">in</span> <span class="n">simple_methods</span> <span class="o">+</span> <span class="n">combined_methods_flatten</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="grids-for-hpo">
+<h3><strong>Grids for HPO</strong><a class="headerlink" href="#grids-for-hpo" title="Link to this heading">#</a></h3>
+<p>In this part we define the grids for the models that will be evaluated. In this round the unique model will be Random Forest, as we explained at the beginning.</p>
+<section id="grid-for-random-forest">
+<h4>Grid for Random Forest<a class="headerlink" href="#grid-for-random-forest" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">param_grid_RF</span><span class="p">(</span><span class="n">trial</span><span class="p">):</span>
+
+    <span class="n">param_grid</span> <span class="o">=</span> <span class="p">({</span>
+        <span class="s1">&#39;n_estimators&#39;</span><span class="p">:</span> <span class="n">trial</span><span class="o">.</span><span class="n">suggest_categorical</span><span class="p">(</span><span class="s1">&#39;n_estimators&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mi">75</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">150</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">250</span><span class="p">,</span> <span class="mi">300</span><span class="p">,</span> <span class="mi">350</span><span class="p">]),</span>
+        <span class="s1">&#39;max_depth&#39;</span><span class="p">:</span> <span class="n">trial</span><span class="o">.</span><span class="n">suggest_categorical</span><span class="p">(</span><span class="s1">&#39;max_depth&#39;</span><span class="p">,</span> <span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">35</span><span class="p">]),</span>
+        <span class="s1">&#39;min_samples_split&#39;</span><span class="p">:</span> <span class="n">trial</span><span class="o">.</span><span class="n">suggest_int</span><span class="p">(</span><span class="s1">&#39;min_samples_split&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">35</span><span class="p">),</span>
+        <span class="s1">&#39;min_samples_leaf&#39;</span><span class="p">:</span> <span class="n">trial</span><span class="o">.</span><span class="n">suggest_int</span><span class="p">(</span><span class="s1">&#39;min_samples_leaf&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">35</span><span class="p">),</span>
+        <span class="s1">&#39;criterion&#39;</span><span class="p">:</span> <span class="n">trial</span><span class="o">.</span><span class="n">suggest_categorical</span><span class="p">(</span><span class="s1">&#39;criterion&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;gini&#39;</span><span class="p">])</span> <span class="p">})</span>
+
+    <span class="k">return</span> <span class="n">param_grid</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="hpo">
+<h3><strong>HPO</strong><a class="headerlink" href="#hpo" title="Link to this heading">#</a></h3>
+<p>We are going to apply an <strong>more exhaustive HPO</strong> over <strong>Random Forest</strong> using the <strong>top 10 features extraction methods</strong> according to the <strong>first round</strong>  of the  <strong>inner evaluation</strong> (the previous one).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;results/top_methods_1&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+        <span class="n">top_methods</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;results/top_stats_1&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+        <span class="n">top_stats</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="hpo-for-random-forest">
+<h4>HPO for Random Forest<a class="headerlink" href="#hpo-for-random-forest" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="s1">&#39;RF&#39;</span>
+
+<span class="n">simple_eval</span> <span class="o">=</span> <span class="n">SimpleEvaluation</span><span class="p">(</span><span class="n">estimator</span><span class="o">=</span><span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">123</span><span class="p">),</span> <span class="n">param_grid</span><span class="o">=</span><span class="n">param_grid_RF</span><span class="p">,</span> 
+                 <span class="n">inner</span><span class="o">=</span><span class="n">inner</span><span class="p">,</span> <span class="n">search_method</span><span class="o">=</span><span class="s1">&#39;optuna&#39;</span><span class="p">,</span> <span class="n">scoring</span><span class="o">=</span><span class="s1">&#39;balanced_accuracy&#39;</span><span class="p">,</span> <span class="n">direction</span><span class="o">=</span><span class="s1">&#39;maximize&#39;</span><span class="p">,</span> 
+                 <span class="n">n_trials</span><span class="o">=</span><span class="mi">250</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">123</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">method</span><span class="p">,</span> <span class="n">stat</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">top_methods</span><span class="p">,</span> <span class="n">top_stats</span><span class="p">):</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;-------------------------------------------------------------------------------&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">method</span><span class="p">,</span> <span class="n">stat</span><span class="p">,</span> <span class="n">model</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;-------------------------------------------------------------------------------&#39;</span><span class="p">)</span>
+
+    <span class="n">simple_eval</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">X_stats_train</span><span class="p">[</span><span class="n">method</span><span class="p">][</span><span class="n">stat</span><span class="p">],</span> <span class="n">Y</span><span class="o">=</span><span class="n">Y_train</span><span class="p">)</span>
+    <span class="n">inner_score</span><span class="p">[</span><span class="n">method</span><span class="p">][</span><span class="n">stat</span><span class="p">][</span><span class="n">model</span><span class="p">]</span> <span class="o">=</span> <span class="n">simple_eval</span><span class="o">.</span><span class="n">inner_score</span>
+    <span class="n">best_params</span><span class="p">[</span><span class="n">method</span><span class="p">][</span><span class="n">stat</span><span class="p">][</span><span class="n">model</span><span class="p">]</span><span class="o">=</span> <span class="n">simple_eval</span><span class="o">.</span><span class="n">inner_best_params</span>
+    <span class="n">inner_results</span><span class="p">[</span><span class="n">method</span><span class="p">][</span><span class="n">stat</span><span class="p">][</span><span class="n">model</span><span class="p">]</span> <span class="o">=</span> <span class="n">simple_eval</span><span class="o">.</span><span class="n">inner_results</span>
+<span class="c1"># 109 mins</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="saving-the-results">
+<h4>Saving the results<a class="headerlink" href="#saving-the-results" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">with open(&#39;results/best_params_2&#39;, &#39;wb&#39;) as file:</span>
+<span class="sd">    pickle.dump(best_params, file)</span>
+
+<span class="sd">with open(&#39;results/inner_scores_2&#39;, &#39;wb&#39;) as file:</span>
+<span class="sd">    pickle.dump(inner_score, file)</span>
+
+<span class="sd">with open(&#39;results/inner_results_2&#39;, &#39;wb&#39;) as file:</span>
+<span class="sd">    pickle.dump(inner_results, file)</span>
+<span class="sd">&#39;&#39;&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="opening-the-results">
+<h4>Opening the results<a class="headerlink" href="#opening-the-results" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;results/best_params_2&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+        <span class="n">best_params</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;results/inner_scores_2&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+        <span class="n">inner_score</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;results/inner_results_2&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+        <span class="n">inner_results</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="selecting-the-best-pipeline">
+<h3><strong>Selecting the best pipeline</strong><a class="headerlink" href="#selecting-the-best-pipeline" title="Link to this heading">#</a></h3>
+<p>In this section we are going to select the best pipeline, that is, the best combination of preprocessing techniques and model, in this case the feature extraction methods are the preprocessing techniques, and the only  model considered is Random Forest.</p>
+<p>All the alternatives evaluated are ranked according to their inner scores (balanced accuracy), and  summarized in a plot.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">inner_score_flatten</span> <span class="o">=</span> <span class="p">{</span><span class="n">key1</span> <span class="o">+</span> <span class="s1">&#39;__&#39;</span> <span class="o">+</span> <span class="n">key2</span> <span class="o">+</span> <span class="s1">&#39;__&#39;</span> <span class="o">+</span> <span class="n">key3</span> <span class="p">:</span> <span class="n">inner_score</span><span class="p">[</span><span class="n">key1</span><span class="p">][</span><span class="n">key2</span><span class="p">][</span><span class="n">key3</span><span class="p">]</span>  
+                       <span class="k">for</span> <span class="n">key1</span> <span class="ow">in</span> <span class="n">inner_score</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> 
+                       <span class="k">for</span> <span class="n">key2</span> <span class="ow">in</span> <span class="n">inner_score</span><span class="p">[</span><span class="n">key1</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> 
+                       <span class="k">for</span> <span class="n">key3</span> <span class="ow">in</span> <span class="n">inner_score</span><span class="p">[</span><span class="n">key1</span><span class="p">][</span><span class="n">key2</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">()}</span>
+<span class="n">best_params_flatten</span> <span class="o">=</span> <span class="p">{</span><span class="n">key1</span> <span class="o">+</span> <span class="s1">&#39;__&#39;</span> <span class="o">+</span> <span class="n">key2</span> <span class="o">+</span> <span class="s1">&#39;__&#39;</span> <span class="o">+</span> <span class="n">key3</span> <span class="p">:</span> <span class="n">best_params</span><span class="p">[</span><span class="n">key1</span><span class="p">][</span><span class="n">key2</span><span class="p">][</span><span class="n">key3</span><span class="p">]</span>  
+                       <span class="k">for</span> <span class="n">key1</span> <span class="ow">in</span> <span class="n">best_params</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> 
+                       <span class="k">for</span> <span class="n">key2</span> <span class="ow">in</span> <span class="n">best_params</span><span class="p">[</span><span class="n">key1</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> 
+                       <span class="k">for</span> <span class="n">key3</span> <span class="ow">in</span> <span class="n">best_params</span><span class="p">[</span><span class="n">key1</span><span class="p">][</span><span class="n">key2</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">()}</span>
+<span class="n">inner_results_flatten</span> <span class="o">=</span> <span class="p">{</span><span class="n">key1</span> <span class="o">+</span> <span class="s1">&#39;__&#39;</span> <span class="o">+</span> <span class="n">key2</span> <span class="o">+</span> <span class="s1">&#39;__&#39;</span> <span class="o">+</span> <span class="n">key3</span> <span class="p">:</span> <span class="n">inner_results</span><span class="p">[</span><span class="n">key1</span><span class="p">][</span><span class="n">key2</span><span class="p">][</span><span class="n">key3</span><span class="p">]</span>  
+                        <span class="k">for</span> <span class="n">key1</span> <span class="ow">in</span> <span class="n">inner_results</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> 
+                        <span class="k">for</span> <span class="n">key2</span> <span class="ow">in</span> <span class="n">inner_results</span><span class="p">[</span><span class="n">key1</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> 
+                        <span class="k">for</span> <span class="n">key3</span> <span class="ow">in</span> <span class="n">inner_results</span><span class="p">[</span><span class="n">key1</span><span class="p">][</span><span class="n">key2</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">()}</span>
+
+<span class="n">inner_score_values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">inner_score_flatten</span><span class="o">.</span><span class="n">values</span><span class="p">()))</span>
+<span class="n">pipelines_names</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">inner_score_flatten</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span>
+<span class="n">best_pipeline</span> <span class="o">=</span> <span class="n">pipelines_names</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">inner_score_values</span><span class="p">)]</span>
+<span class="n">score_best_pipeline</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">inner_score_values</span><span class="p">)</span>
+
+<span class="n">combined_models_score</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">pipelines_names</span><span class="p">,</span> <span class="n">inner_score_values</span><span class="p">))</span>
+<span class="n">sorted_combined_models_score</span><span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">combined_models_score</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># Sort from greater to lower</span>
+<span class="n">sorted_pipelines</span><span class="p">,</span> <span class="n">sorted_scores</span> <span class="o">=</span> <span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">sorted_combined_models_score</span><span class="p">)</span>
+<span class="n">sorted_pipelines</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">sorted_pipelines</span><span class="p">)</span>
+<span class="n">sorted_scores</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">sorted_scores</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">barplot</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">sorted_pipelines</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">sorted_scores</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.9</span><span class="p">)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">barplot</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="n">best_pipeline</span><span class="p">],</span> <span class="n">x</span><span class="o">=</span><span class="p">[</span><span class="n">score_best_pipeline</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.9</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Models&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Balanced Accuracy&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">inner_score_values</span><span class="p">),</span> <span class="mi">7</span><span class="p">),</span><span class="mi">3</span><span class="p">))</span> 
+<span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>    
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Pipeline Selection - 5-Fold CV&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">13</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The best pipeline according to the inner evaluation is: </span><span class="si">{</span><span class="n">best_pipeline</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Balanced accuracy of the best pipeline: &#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">score_best_pipeline</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="n">best_method</span> <span class="o">=</span> <span class="n">best_pipeline</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;__&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">best_stats</span> <span class="o">=</span> <span class="n">best_pipeline</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;__&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">best_model</span> <span class="o">=</span> <span class="n">best_pipeline</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;__&#39;</span><span class="p">)[</span><span class="mi">2</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1"> Best feature extraction method: &#39;</span><span class="p">,</span> <span class="n">best_method</span><span class="p">,</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;Best stats: &#39;</span><span class="p">,</span> <span class="n">best_stats</span><span class="p">,</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;Best model: &#39;</span><span class="p">,</span> <span class="n">best_model</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">The best model hyper-parameters are: &#39;</span><span class="p">,</span> <span class="n">best_params_flatten</span><span class="p">[</span><span class="n">best_pipeline</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/5a309405007353fae8a873aad79e9363c4a3704d88310602ff911409dbe0ec14.png" src="_images/5a309405007353fae8a873aad79e9363c4a3704d88310602ff911409dbe0ec14.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The best pipeline according to the inner evaluation is: MFCC-chroma-spectral_centroid-zero_crossing_rate__mean-Q25-median-Q75-std__RF
+Balanced accuracy of the best pipeline:  0.774
+
+ Best feature extraction method:  MFCC-chroma-spectral_centroid-zero_crossing_rate 
+ Best stats:  mean-Q25-median-Q75-std 
+ Best model:  RF
+
+The best model hyper-parameters are:  {&#39;n_estimators&#39;: 300, &#39;max_depth&#39;: 35, &#39;min_samples_split&#39;: 2, &#39;min_samples_leaf&#39;: 2, &#39;criterion&#39;: &#39;gini&#39;}
+</pre></div>
+</div>
+</div>
+</div>
+<p>As we can see we have found a better version of Random Forest in this inner evaluation, so we have improved the previous results.</p>
+<p>Remind that hte best inner score in the round 1 was a balanced accuracy of 67.3%, and now we have achieved 77.4%.</p>
+<p>We save the top 5 features extraction methods to use them in the next inner evaluation round.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">top_methods</span><span class="p">,</span> <span class="n">top_stats</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
+<span class="n">n_top</span> <span class="o">=</span> <span class="mi">5</span>
+
+<span class="k">for</span> <span class="n">pipeline</span> <span class="ow">in</span> <span class="n">sorted_pipelines</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">n_top</span><span class="p">]:</span>
+    <span class="n">top_methods</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pipeline</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;__&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">top_stats</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pipeline</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;__&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Saving results </span>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">with open(&#39;results/top_methods_2&#39;, &#39;wb&#39;) as file:</span>
+<span class="sd">    pickle.dump(top_methods, file)</span>
+
+<span class="sd">with open(&#39;results/top_stats_2&#39;, &#39;wb&#39;) as file:</span>
+<span class="sd">    pickle.dump(top_stats, file)</span>
+<span class="sd">&#39;&#39;&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Inner_Evaluation_1.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><strong>Parkinson Severity Classification: Inner Evaluation 1</strong></p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Inner_Evaluation_3.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><strong>Parkinson Severity Classification: Inner Evaluation 3</strong></p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#requirements"><strong>Requirements</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-definition"><strong>Data definition</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#outer-validation-method-train-test-split"><strong>Outer validation method: train-test split</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#applying-inner-evaluation"><strong>Applying Inner Evaluation</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inner-validation-method-kfold-cross-validation"><strong>Inner validation method: KFold Cross Validation</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#grids-for-hpo"><strong>Grids for HPO</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#grid-for-random-forest">Grid for Random Forest</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hpo"><strong>HPO</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#hpo-for-random-forest">HPO for Random Forest</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#saving-the-results">Saving the results</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#opening-the-results">Opening the results</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#selecting-the-best-pipeline"><strong>Selecting the best pipeline</strong></a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Fabio Scielzo Ortiz
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

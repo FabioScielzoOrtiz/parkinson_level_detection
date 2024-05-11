@@ -1,0 +1,15 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: intro
+chapters:
+- file: Audio_Processing
+- file: Inner_Evaluation_1
+- file: Inner_Evaluation_2
+- file: Inner_Evaluation_3
+- file: Inner_Evaluation_4
+- file: Inner_Evaluation_5
+- file: Best_Pipeline_Selection
+- file: Outer_Evaluation
+- file: Final_Model

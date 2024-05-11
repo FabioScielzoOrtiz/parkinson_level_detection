@@ -1,0 +1,1206 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Parkinson Severity Classification: Inner Evaluation 4 &#8212; Parkinson Severity Detection</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Inner_Evaluation_4';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Parkinson Severity Classification: Inner Evaluation 5" href="Inner_Evaluation_5.html" />
+    <link rel="prev" title="Parkinson Severity Classification: Inner Evaluation 3" href="Inner_Evaluation_3.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.jpeg" class="logo__image only-light" alt="Parkinson Severity Detection - Home"/>
+    <script>document.write(`<img src="_static/logo.jpeg" class="logo__image only-dark" alt="Parkinson Severity Detection - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Welcome to your Jupyter Book
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Audio_Processing.html"><strong>Parkinson Severity Classification: Audio Processing</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="Inner_Evaluation_1.html"><strong>Parkinson Severity Classification: Inner Evaluation 1</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="Inner_Evaluation_2.html"><strong>Parkinson Severity Classification: Inner Evaluation 2</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="Inner_Evaluation_3.html"><strong>Parkinson Severity Classification: Inner Evaluation 3</strong></a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#"><strong>Parkinson Severity Classification: Inner Evaluation 4</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="Inner_Evaluation_5.html"><strong>Parkinson Severity Classification: Inner Evaluation 5</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="Best_Pipeline_Selection.html"><strong>Parkinson Severity Classification: Selecting the best pipeline</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="Outer_Evaluation.html"><strong>Parkinson Severity Classification: Outer Evaluation</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="Final_Model.html"><strong>Parkinson Severity Classification: Final Model</strong></a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/FabioScielzoOrtiz/Parkinson-Level-Detection" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/FabioScielzoOrtiz/Parkinson-Level-Detection/issues/new?title=Issue%20on%20page%20%2FInner_Evaluation_4.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/Inner_Evaluation_4.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Parkinson Severity Classification: Inner Evaluation 4</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#requirements"><strong>Requirements</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-definition"><strong>Data definition</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#outer-validation-method-train-test-split"><strong>Outer validation method: train-test split</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#applying-inner-evaluation"><strong>Applying Inner Evaluation</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inner-validation-method-kfold-cross-validation"><strong>Inner validation method: KFold Cross Validation</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#grids-for-hpo"><strong>Grids for HPO</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#grid-for-rnn-pytorch">Grid for RNN (PyTorch)</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hpo"><strong>HPO</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#hpo-for-rnn-pytorch">HPO for RNN (PyTorch)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#saving-the-results">Saving the results</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#opening-the-results">Opening the results</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#selecting-the-best-pipeline"><strong>Selecting the best pipeline</strong></a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="parkinson-severity-classification-inner-evaluation-4">
+<h1><strong>Parkinson Severity Classification: Inner Evaluation 4</strong><a class="headerlink" href="#parkinson-severity-classification-inner-evaluation-4" title="Link to this heading">#</a></h1>
+<blockquote>
+<div><p><strong>Explore an approach based on sequential data (using MFCC time-varying features), with Recurrent Neural Networks.</strong></p>
+</div></blockquote>
+<section id="requirements">
+<h2><strong>Requirements</strong><a class="headerlink" href="#requirements" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span>  <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">polars</span> <span class="k">as</span> <span class="nn">pl</span>
+<span class="kn">from</span> <span class="nn">torch</span> <span class="kn">import</span> <span class="n">nn</span>
+<span class="kn">from</span> <span class="nn">skorch</span> <span class="kn">import</span> <span class="n">NeuralNetClassifier</span>
+<span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span><span class="p">,</span> <span class="n">StratifiedKFold</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
+<span class="kn">import</span> <span class="nn">pickle</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;C:\Users\fscielzo\Documents\Packages\PyAudio_Package_Private&quot;</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">PyAudio.preprocessing</span> <span class="kn">import</span> <span class="n">get_X_tensor_audio_features</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;C:\Users\fscielzo\Documents\Packages\PyML_Package_Private&#39;</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">PyML.evaluation</span> <span class="kn">import</span> <span class="n">SimpleEvaluation</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;C:\Users\fscielzo\Documents\Packages\PyDL_Package_Private&#39;</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">PyDL.models</span> <span class="kn">import</span> <span class="n">RNN</span>
+<span class="kn">from</span> <span class="nn">PyDL.preprocessing</span> <span class="kn">import</span> <span class="n">TensorStandardScaler</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">RNN_model</span> <span class="o">=</span> <span class="n">NeuralNetClassifier</span><span class="p">(</span>
+    <span class="n">module</span><span class="o">=</span><span class="n">RNN</span><span class="p">(</span><span class="n">input_dim</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">output_dim</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">num_layers</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">hidden_size</span><span class="o">=</span><span class="mi">128</span><span class="p">),</span>
+    <span class="n">criterion</span><span class="o">=</span><span class="n">nn</span><span class="o">.</span><span class="n">CrossEntropyLoss</span><span class="p">,</span>
+    <span class="n">optimizer</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">Adam</span><span class="p">,</span>
+    <span class="n">lr</span><span class="o">=</span><span class="mf">0.001</span><span class="p">,</span>
+    <span class="n">batch_size</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
+    <span class="n">max_epochs</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span>
+    <span class="n">device</span><span class="o">=</span><span class="s1">&#39;cuda&#39;</span> <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span> <span class="k">else</span> <span class="s1">&#39;cpu&#39;</span><span class="p">,</span>
+    <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="data-definition">
+<h2><strong>Data definition</strong><a class="headerlink" href="#data-definition" title="Link to this heading">#</a></h2>
+<p>In this section we define the data to be used. Specifically we define the response variable and a set of predictors matrices to be used as different alternatives, each one associate to a combination of features extraction methods and statistics.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">files_list_name</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;C:\Users\fscielzo\Documents\DataScience-GitHub\Audio Analysis\Parkinson_Severity_Classification\Data\Files_List.txt&#39;</span>
+<span class="n">files_df</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">files_list_name</span><span class="p">,</span> <span class="n">separator</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">has_header</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">new_columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;path&#39;</span><span class="p">,</span> <span class="s1">&#39;level&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Configuration variables for feature extraction</span>
+<span class="n">fs</span> <span class="o">=</span> <span class="mi">16000</span> <span class="c1"># Sampling frequency</span>
+<span class="n">wst</span> <span class="o">=</span> <span class="mf">0.032</span> <span class="c1"># Window size (seconds)</span>
+<span class="n">fpt</span> <span class="o">=</span> <span class="mf">0.008</span> <span class="c1"># Frame period (seconds)</span>
+<span class="n">nfft</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">wst</span><span class="o">*</span><span class="n">fs</span><span class="p">))</span> <span class="c1"># Window size (samples)</span>
+<span class="n">fp</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">fpt</span><span class="o">*</span><span class="n">fs</span><span class="p">))</span> <span class="c1"># Frame period (samples)</span>
+<span class="n">nbands</span> <span class="o">=</span> <span class="mi">40</span> <span class="c1"># Number of filters in the filterbank</span>
+<span class="n">ncomp</span> <span class="o">=</span> <span class="mi">20</span> <span class="c1"># Number of MFCC components</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We define the response and the tensor with the time-varying features extracted with the MFCC method.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Y</span> <span class="o">=</span> <span class="n">files_df</span><span class="p">[</span><span class="s1">&#39;level&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+
+<span class="n">X_MFCC_tensor</span> <span class="o">=</span> <span class="n">get_X_tensor_audio_features</span><span class="p">(</span><span class="n">paths</span><span class="o">=</span><span class="n">files_df</span><span class="p">[</span><span class="s1">&#39;path&#39;</span><span class="p">],</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;MFCC&#39;</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="n">fs</span><span class="p">,</span> <span class="n">n_fft</span><span class="o">=</span><span class="n">nfft</span><span class="p">,</span> <span class="n">hop_length</span><span class="o">=</span><span class="n">fp</span><span class="p">,</span> <span class="n">n_mels</span><span class="o">=</span><span class="n">nbands</span><span class="p">,</span> <span class="n">n_mfcc</span><span class="o">=</span><span class="n">ncomp</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_chroma_tensor</span> <span class="o">=</span> <span class="n">get_X_tensor_audio_features</span><span class="p">(</span><span class="n">paths</span><span class="o">=</span><span class="n">files_df</span><span class="p">[</span><span class="s1">&#39;path&#39;</span><span class="p">],</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;chroma&#39;</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="n">fs</span><span class="p">,</span> <span class="n">n_fft</span><span class="o">=</span><span class="n">nfft</span><span class="p">,</span> <span class="n">hop_length</span><span class="o">=</span><span class="n">fp</span><span class="p">,</span> <span class="n">n_mels</span><span class="o">=</span><span class="n">nbands</span><span class="p">,</span> <span class="n">n_mfcc</span><span class="o">=</span><span class="n">ncomp</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="outer-validation-method-train-test-split">
+<h2><strong>Outer validation method: train-test split</strong><a class="headerlink" href="#outer-validation-method-train-test-split" title="Link to this heading">#</a></h2>
+<p>We split our data (response and predictors) in two partitions, the training and the testing one. The training partition will be used in the inner evaluation for selecting the best approach to predict the PD level, and the test one will only be used at the very end for making an estimation of the future performance of the best approach, that is, and estimation of how this approach will classify the level of PD of new patients.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_MFCC_tensor_train</span><span class="p">,</span> <span class="n">X_MFCC_tensor_test</span><span class="p">,</span> <span class="n">Y_train</span><span class="p">,</span> <span class="n">Y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X_MFCC_tensor</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">123</span><span class="p">,</span> <span class="n">stratify</span><span class="o">=</span><span class="n">Y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_MFCC_tensor</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(240, 20, 4403)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_MFCC_tensor_train</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(180, 20, 4403)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_MFCC_tensor_test</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(60, 20, 4403)
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>Standardizing the data since it seems to work well with RNN</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Reshape data for standardization (from 3D to 2D)</span>
+<span class="n">n_samples</span><span class="p">,</span> <span class="n">n_mfcc</span><span class="p">,</span> <span class="n">max_length</span> <span class="o">=</span> <span class="n">X_MFCC_tensor_train</span><span class="o">.</span><span class="n">shape</span>
+<span class="n">X_MFCC_tensor_train_flatten</span> <span class="o">=</span> <span class="n">X_MFCC_tensor_train</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_mfcc</span> <span class="o">*</span> <span class="n">max_length</span><span class="p">)</span>
+
+<span class="c1"># Standardize the data</span>
+<span class="n">scaler</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
+<span class="n">X_MFCC_train_standardized</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_MFCC_tensor_train_flatten</span><span class="p">)</span>
+
+<span class="c1"># Reshape back to 3D</span>
+<span class="n">X_MFCC_tensor_train</span> <span class="o">=</span> <span class="n">X_MFCC_train_standardized</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">n_samples</span><span class="p">,</span> <span class="n">n_mfcc</span><span class="p">,</span> <span class="n">max_length</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Reshape data for standardization (from 3D to 2D)</span>
+<span class="n">n_samples</span><span class="p">,</span> <span class="n">n_mfcc</span><span class="p">,</span> <span class="n">max_length</span> <span class="o">=</span> <span class="n">X_MFCC_tensor_test</span><span class="o">.</span><span class="n">shape</span>
+<span class="n">X_MFCC_tensor_test_flatten</span> <span class="o">=</span> <span class="n">X_MFCC_tensor_test</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_mfcc</span> <span class="o">*</span> <span class="n">max_length</span><span class="p">)</span>
+
+<span class="c1"># Standardize the data</span>
+<span class="n">X_MFCC_test_standardized</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_MFCC_tensor_test_flatten</span><span class="p">)</span>
+
+<span class="c1"># Reshape back to 3D</span>
+<span class="n">X_MFCC_tensor_test</span> <span class="o">=</span> <span class="n">X_MFCC_test_standardized</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">n_samples</span><span class="p">,</span> <span class="n">n_mfcc</span><span class="p">,</span> <span class="n">max_length</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>A better approach to do this without falling in data leakage:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_MFCC_tensor_train</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[[ 0.77925549,  0.75966389,  0.75801119, ...,  0.07474351,
+          0.07474351,  0.07474351],
+        [ 0.49572165,  0.11072004, -0.31598378, ..., -0.07474351,
+         -0.07474351, -0.07474351],
+        [ 1.34147712,  1.38633399,  1.4529877 , ..., -0.07474351,
+         -0.07474351, -0.07474351],
+        ...,
+        [ 0.48452161, -0.07294603,  0.47874218, ..., -0.07474351,
+         -0.07474351, -0.07474351],
+        [ 1.382128  ,  1.93450536,  2.12793082, ..., -0.07474351,
+         -0.07474351, -0.07474351],
+        [-0.97325322, -1.423122  , -1.50599919, ..., -0.07474351,
+         -0.07474351, -0.07474351]],
+
+       [[-1.09754581, -1.2406114 , -1.43178652, ...,  0.07474351,
+          0.07474351,  0.07474351],
+        [-0.21227887, -0.53582309, -1.00587868, ..., -0.07474351,
+         -0.07474351, -0.07474351],
+        [ 0.01043724, -0.08198521, -0.06441753, ..., -0.07474351,
+         -0.07474351, -0.07474351],
+        ...,
+        [ 0.63225567,  0.53115129,  0.74958524, ..., -0.07474351,
+         -0.07474351, -0.07474351],
+        [ 0.47306939,  0.46868749,  0.82995921, ..., -0.07474351,
+         -0.07474351, -0.07474351],
+        [ 1.49799736,  1.56677656,  1.18140685, ..., -0.07474351,
+         -0.07474351, -0.07474351]],
+
+       [[-0.93716879, -0.92827138, -0.89666019, ...,  0.07474351,
+          0.07474351,  0.07474351],
+        [-0.39703831, -0.31946003, -0.37899106, ..., -0.07474351,
+         -0.07474351, -0.07474351],
+        [-0.35987158, -0.70249106, -0.93452423, ..., -0.07474351,
+         -0.07474351, -0.07474351],
+        ...,
+        [-0.28148851, -0.39495589,  0.04978402, ..., -0.07474351,
+         -0.07474351, -0.07474351],
+        [-0.34802631, -2.12577281, -1.47394572, ..., -0.07474351,
+         -0.07474351, -0.07474351],
+        [-0.49579407, -1.6952296 , -1.53697988, ..., -0.07474351,
+         -0.07474351, -0.07474351]],
+
+       ...,
+
+       [[ 0.6565104 ,  0.65331194,  0.70792749, ...,  0.07474351,
+          0.07474351,  0.07474351],
+        [ 0.72916882,  0.81260307,  0.70276269, ..., -0.07474351,
+         -0.07474351, -0.07474351],
+        [ 0.70178372,  0.89056889,  0.78858701, ..., -0.07474351,
+         -0.07474351, -0.07474351],
+        ...,
+        [-0.40537788, -0.64057784, -0.9321527 , ..., -0.07474351,
+         -0.07474351, -0.07474351],
+        [-0.9375777 , -0.4679151 ,  0.41955871, ..., -0.07474351,
+         -0.07474351, -0.07474351],
+        [-0.72704588, -0.15770425,  0.56146658, ..., -0.07474351,
+         -0.07474351, -0.07474351]],
+
+       [[-1.26680811, -1.19761807, -1.21938432, ...,  0.07474351,
+          0.07474351,  0.07474351],
+        [-0.86848324, -0.76134084, -0.62641248, ..., -0.07474351,
+         -0.07474351, -0.07474351],
+        [ 0.28175129, -0.54700239, -0.58084685, ..., -0.07474351,
+         -0.07474351, -0.07474351],
+        ...,
+        [-0.38528358,  0.3547839 ,  0.73461061, ..., -0.07474351,
+         -0.07474351, -0.07474351],
+        [ 2.46115109,  1.7585346 ,  1.48140808, ..., -0.07474351,
+         -0.07474351, -0.07474351],
+        [ 1.38349091,  0.54929556, -0.42187174, ..., -0.07474351,
+         -0.07474351, -0.07474351]],
+
+       [[ 0.04556678, -0.04351323, -0.12983973, ...,  0.07474351,
+          0.07474351,  0.07474351],
+        [ 1.99804549,  1.83888045,  1.60835686, ..., -0.07474351,
+         -0.07474351, -0.07474351],
+        [ 2.35297563,  2.29635284,  2.03319404, ..., -0.07474351,
+         -0.07474351, -0.07474351],
+        ...,
+        [ 0.30947655,  0.43012554,  0.22527788, ..., -0.07474351,
+         -0.07474351, -0.07474351],
+        [ 0.12866233,  0.34554382,  0.82022089, ..., -0.07474351,
+         -0.07474351, -0.07474351],
+        [-1.43149724, -1.59260321, -1.39095793, ..., -0.07474351,
+         -0.07474351, -0.07474351]]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_MFCC_tensor_train</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(180, 20, 4403)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">scaler</span> <span class="o">=</span> <span class="n">TensorStandardScaler</span><span class="p">(</span><span class="n">apply</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">scaler</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_MFCC_tensor_train</span><span class="p">)</span>
+<span class="n">scaler</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_MFCC_tensor_train</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[[ 0.77925549,  0.75966389,  0.75801119, ...,  0.07474351,
+          0.07474351,  0.07474351],
+        [ 0.49572165,  0.11072004, -0.31598378, ..., -0.07474351,
+         -0.07474351, -0.07474351],
+        [ 1.34147712,  1.38633399,  1.4529877 , ..., -0.07474351,
+         -0.07474351, -0.07474351],
+        ...,
+        [ 0.48452161, -0.07294603,  0.47874218, ..., -0.07474351,
+         -0.07474351, -0.07474351],
+        [ 1.382128  ,  1.93450536,  2.12793082, ..., -0.07474351,
+         -0.07474351, -0.07474351],
+        [-0.97325322, -1.423122  , -1.50599919, ..., -0.07474351,
+         -0.07474351, -0.07474351]],
+
+       [[-1.09754581, -1.2406114 , -1.43178652, ...,  0.07474351,
+          0.07474351,  0.07474351],
+        [-0.21227887, -0.53582309, -1.00587868, ..., -0.07474351,
+         -0.07474351, -0.07474351],
+        [ 0.01043724, -0.08198521, -0.06441753, ..., -0.07474351,
+         -0.07474351, -0.07474351],
+        ...,
+        [ 0.63225567,  0.53115129,  0.74958524, ..., -0.07474351,
+         -0.07474351, -0.07474351],
+        [ 0.47306939,  0.46868749,  0.82995921, ..., -0.07474351,
+         -0.07474351, -0.07474351],
+        [ 1.49799736,  1.56677656,  1.18140685, ..., -0.07474351,
+         -0.07474351, -0.07474351]],
+
+       [[-0.93716879, -0.92827138, -0.89666019, ...,  0.07474351,
+          0.07474351,  0.07474351],
+        [-0.39703831, -0.31946003, -0.37899106, ..., -0.07474351,
+         -0.07474351, -0.07474351],
+        [-0.35987158, -0.70249106, -0.93452423, ..., -0.07474351,
+         -0.07474351, -0.07474351],
+        ...,
+        [-0.28148851, -0.39495589,  0.04978402, ..., -0.07474351,
+         -0.07474351, -0.07474351],
+        [-0.34802631, -2.12577281, -1.47394572, ..., -0.07474351,
+         -0.07474351, -0.07474351],
+        [-0.49579407, -1.6952296 , -1.53697988, ..., -0.07474351,
+         -0.07474351, -0.07474351]],
+
+       ...,
+
+       [[ 0.6565104 ,  0.65331194,  0.70792749, ...,  0.07474351,
+          0.07474351,  0.07474351],
+        [ 0.72916882,  0.81260307,  0.70276269, ..., -0.07474351,
+         -0.07474351, -0.07474351],
+        [ 0.70178372,  0.89056889,  0.78858701, ..., -0.07474351,
+         -0.07474351, -0.07474351],
+        ...,
+        [-0.40537788, -0.64057784, -0.9321527 , ..., -0.07474351,
+         -0.07474351, -0.07474351],
+        [-0.9375777 , -0.4679151 ,  0.41955871, ..., -0.07474351,
+         -0.07474351, -0.07474351],
+        [-0.72704588, -0.15770425,  0.56146658, ..., -0.07474351,
+         -0.07474351, -0.07474351]],
+
+       [[-1.26680811, -1.19761807, -1.21938432, ...,  0.07474351,
+          0.07474351,  0.07474351],
+        [-0.86848324, -0.76134084, -0.62641248, ..., -0.07474351,
+         -0.07474351, -0.07474351],
+        [ 0.28175129, -0.54700239, -0.58084685, ..., -0.07474351,
+         -0.07474351, -0.07474351],
+        ...,
+        [-0.38528358,  0.3547839 ,  0.73461061, ..., -0.07474351,
+         -0.07474351, -0.07474351],
+        [ 2.46115109,  1.7585346 ,  1.48140808, ..., -0.07474351,
+         -0.07474351, -0.07474351],
+        [ 1.38349091,  0.54929556, -0.42187174, ..., -0.07474351,
+         -0.07474351, -0.07474351]],
+
+       [[ 0.04556678, -0.04351323, -0.12983973, ...,  0.07474351,
+          0.07474351,  0.07474351],
+        [ 1.99804549,  1.83888045,  1.60835686, ..., -0.07474351,
+         -0.07474351, -0.07474351],
+        [ 2.35297563,  2.29635284,  2.03319404, ..., -0.07474351,
+         -0.07474351, -0.07474351],
+        ...,
+        [ 0.30947655,  0.43012554,  0.22527788, ..., -0.07474351,
+         -0.07474351, -0.07474351],
+        [ 0.12866233,  0.34554382,  0.82022089, ..., -0.07474351,
+         -0.07474351, -0.07474351],
+        [-1.43149724, -1.59260321, -1.39095793, ..., -0.07474351,
+         -0.07474351, -0.07474351]]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">scaler</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_MFCC_tensor_train</span><span class="p">)</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(180, 20, 4403)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">scaler</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_MFCC_tensor_test</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[[-1.1088349 , -1.21068496, -1.24170116, ...,  0.07474351,
+          0.07474351,  0.07474351],
+        [-1.29952919, -1.45907204, -1.43475645, ..., -0.07474351,
+         -0.07474351, -0.07474351],
+        [-0.07323975, -0.41990087, -0.55769708, ..., -0.07474351,
+         -0.07474351, -0.07474351],
+        ...,
+        [ 0.74406594,  0.77746824,  0.67277322, ..., -0.07474351,
+         -0.07474351, -0.07474351],
+        [ 0.69785958,  0.69918349,  0.65714235, ..., -0.07474351,
+         -0.07474351, -0.07474351],
+        [ 0.57196627,  0.64494054,  0.76531219, ..., -0.07474351,
+         -0.07474351, -0.07474351]],
+
+       [[-0.3483037 , -0.15471678,  0.15473919, ...,  0.07474351,
+          0.07474351,  0.07474351],
+        [ 0.66910327,  0.9586072 ,  1.04969775, ..., -0.07474351,
+         -0.07474351, -0.07474351],
+        [-1.33066569, -1.04541998, -0.74294924, ..., -0.07474351,
+         -0.07474351, -0.07474351],
+        ...,
+        [ 2.24923983,  2.19150319,  1.54300361, ..., -0.07474351,
+         -0.07474351, -0.07474351],
+        [-1.78269042, -0.12646651, -0.44859062, ..., -0.07474351,
+         -0.07474351, -0.07474351],
+        [-2.07612607,  0.7965252 ,  0.31931094, ..., -0.07474351,
+         -0.07474351, -0.07474351]],
+
+       [[-1.03763687, -1.0695463 , -1.02396231, ...,  0.07474351,
+          0.07474351,  0.07474351],
+        [-1.32669176, -1.20835791, -0.94714662, ..., -0.07474351,
+         -0.07474351, -0.07474351],
+        [-0.32077486, -0.16320353,  0.13569455, ..., -0.07474351,
+         -0.07474351, -0.07474351],
+        ...,
+        [ 0.8763195 , -0.01483926, -0.5642226 , ..., -0.07474351,
+         -0.07474351, -0.07474351],
+        [ 0.33603545, -0.5300002 , -0.87023331, ..., -0.07474351,
+         -0.07474351, -0.07474351],
+        [ 0.17797754, -0.50627413, -0.62680684, ..., -0.07474351,
+         -0.07474351, -0.07474351]],
+
+       ...,
+
+       [[ 0.79789592,  0.6718777 ,  0.33046552, ...,  0.07474351,
+          0.07474351,  0.07474351],
+        [ 0.73263119,  0.99082343,  1.51836759, ..., -0.07474351,
+         -0.07474351, -0.07474351],
+        [ 0.90628487,  1.27901072,  2.08666589, ..., -0.07474351,
+         -0.07474351, -0.07474351],
+        ...,
+        [ 0.24868375,  0.24592557,  0.39300569, ..., -0.07474351,
+         -0.07474351, -0.07474351],
+        [ 0.84737753,  0.36539538, -0.31156388, ..., -0.07474351,
+         -0.07474351, -0.07474351],
+        [ 1.68994957,  1.07338474,  1.22594029, ..., -0.07474351,
+         -0.07474351, -0.07474351]],
+
+       [[ 1.59412017,  1.53726977,  1.32176695, ...,  0.07474351,
+          0.07474351,  0.07474351],
+        [ 0.44501062,  0.12176085, -0.75543876, ..., -0.07474351,
+         -0.07474351, -0.07474351],
+        [-0.5138407 , -0.584392  ,  0.04589857, ..., -0.07474351,
+         -0.07474351, -0.07474351],
+        ...,
+        [ 1.73706153,  1.46862996,  3.56796765, ..., -0.07474351,
+         -0.07474351, -0.07474351],
+        [ 1.13340098,  1.77850333,  1.6402638 , ..., -0.07474351,
+         -0.07474351, -0.07474351],
+        [ 0.24298456,  0.29429363, -1.11233773, ..., -0.07474351,
+         -0.07474351, -0.07474351]],
+
+       [[-1.17565817, -1.22614176, -1.23409303, ...,  0.07474351,
+          0.07474351,  0.07474351],
+        [-1.48596274, -1.36792995, -1.26105226, ..., -0.07474351,
+         -0.07474351, -0.07474351],
+        [-0.67358414, -0.27077418, -0.29346544, ..., -0.07474351,
+         -0.07474351, -0.07474351],
+        ...,
+        [ 0.2830349 ,  0.62647133,  0.50570222, ..., -0.07474351,
+         -0.07474351, -0.07474351],
+        [ 0.31699058,  0.5937816 ,  0.49041113, ..., -0.07474351,
+         -0.07474351, -0.07474351],
+        [ 0.19708623,  0.36830872,  0.51281274, ..., -0.07474351,
+         -0.07474351, -0.07474351]]])
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>Converting to tensor <code class="docutils literal notranslate"><span class="pre">PyTroch</span></code> data type</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_MFCC_tensor</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">X_MFCC_tensor</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+<span class="n">X_MFCC_tensor_train</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">X_MFCC_tensor_train</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+<span class="n">X_MFCC_tensor_test</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">X_MFCC_tensor_test</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+
+<span class="n">Y_tensor</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">Y</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+<span class="n">Y_train_tensor</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">Y_train</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+<span class="n">Y_test_tensor</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">Y_test</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="applying-inner-evaluation">
+<h2><strong>Applying Inner Evaluation</strong><a class="headerlink" href="#applying-inner-evaluation" title="Link to this heading">#</a></h2>
+<p>In this section we are going to apply the round four of the inner evaluation.</p>
+<section id="inner-validation-method-kfold-cross-validation">
+<h3><strong>Inner validation method: KFold Cross Validation</strong><a class="headerlink" href="#inner-validation-method-kfold-cross-validation" title="Link to this heading">#</a></h3>
+<p>We define the validation method to be used in the inner evaluation, that will be Stratified KFold Cross Validation.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">inner</span> <span class="o">=</span> <span class="n">StratifiedKFold</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">123</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We define dictionaries to save important results that will be gathered in the inner evaluation.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">inner_score</span><span class="p">,</span> <span class="n">best_params</span><span class="p">,</span> <span class="n">inner_results</span> <span class="o">=</span> <span class="p">{},</span> <span class="p">{},</span> <span class="p">{}</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="grids-for-hpo">
+<h3><strong>Grids for HPO</strong><a class="headerlink" href="#grids-for-hpo" title="Link to this heading">#</a></h3>
+<section id="grid-for-rnn-pytorch">
+<h4>Grid for RNN (PyTorch)<a class="headerlink" href="#grid-for-rnn-pytorch" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">param_grid_RNN</span><span class="p">(</span><span class="n">trial</span><span class="p">,</span> <span class="n">input_dim</span><span class="p">,</span> <span class="n">output_dim</span><span class="p">):</span>
+
+    <span class="n">param_grid</span> <span class="o">=</span> <span class="p">({</span>
+        <span class="s1">&#39;module__input_dim&#39;</span><span class="p">:</span> <span class="n">trial</span><span class="o">.</span><span class="n">suggest_categorical</span><span class="p">(</span><span class="s1">&#39;module__input_dim&#39;</span><span class="p">,</span> <span class="p">[</span><span class="n">input_dim</span><span class="p">]),</span>
+        <span class="s1">&#39;module__output_dim&#39;</span><span class="p">:</span> <span class="n">trial</span><span class="o">.</span><span class="n">suggest_categorical</span><span class="p">(</span><span class="s1">&#39;module__output_dim&#39;</span><span class="p">,</span> <span class="p">[</span><span class="n">output_dim</span><span class="p">]),</span>
+        <span class="s1">&#39;module__num_layers&#39;</span><span class="p">:</span> <span class="n">trial</span><span class="o">.</span><span class="n">suggest_int</span><span class="p">(</span><span class="s1">&#39;module__num_layers&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span>
+        <span class="s1">&#39;module__hidden_size&#39;</span><span class="p">:</span> <span class="n">trial</span><span class="o">.</span><span class="n">suggest_categorical</span><span class="p">(</span><span class="s1">&#39;module__hidden_size&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mi">50</span><span class="p">,</span> <span class="mi">70</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">120</span><span class="p">,</span> <span class="mi">150</span><span class="p">,</span> <span class="mi">175</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">250</span><span class="p">]),</span>
+        <span class="s1">&#39;module__dropout_rate&#39;</span><span class="p">:</span> <span class="n">trial</span><span class="o">.</span><span class="n">suggest_float</span><span class="p">(</span><span class="s1">&#39;module__dropout_rate&#39;</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.95</span><span class="p">,</span> <span class="n">log</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+        <span class="s1">&#39;lr&#39;</span><span class="p">:</span> <span class="n">trial</span><span class="o">.</span><span class="n">suggest_float</span><span class="p">(</span><span class="s1">&#39;lr&#39;</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="n">log</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+        <span class="s1">&#39;max_epochs&#39;</span><span class="p">:</span> <span class="n">trial</span><span class="o">.</span><span class="n">suggest_categorical</span><span class="p">(</span><span class="s1">&#39;max_epochs&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">75</span><span class="p">,</span> <span class="mi">100</span><span class="p">]),</span>
+        <span class="s1">&#39;batch_size&#39;</span><span class="p">:</span> <span class="n">trial</span><span class="o">.</span><span class="n">suggest_categorical</span><span class="p">(</span><span class="s1">&#39;batch_size&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mi">15</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">70</span><span class="p">,</span> <span class="mi">100</span><span class="p">])</span>
+    <span class="p">})</span>
+
+    <span class="k">return</span> <span class="n">param_grid</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="hpo">
+<h3><strong>HPO</strong><a class="headerlink" href="#hpo" title="Link to this heading">#</a></h3>
+<p>Applying HPO over Recurrent Neural Networks using the MFCC sequencies of features.</p>
+<section id="hpo-for-rnn-pytorch">
+<h4>HPO for RNN (PyTorch)<a class="headerlink" href="#hpo-for-rnn-pytorch" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="s1">&#39;RNN&#39;</span>
+
+<span class="n">input_dim</span> <span class="o">=</span> <span class="n">X_MFCC_tensor_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+<span class="n">output_dim</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">Y_train</span><span class="p">))</span>
+
+<span class="n">simple_eval</span> <span class="o">=</span> <span class="n">SimpleEvaluation</span><span class="p">(</span><span class="n">estimator</span><span class="o">=</span><span class="n">RNN_model</span><span class="p">,</span> <span class="n">param_grid</span><span class="o">=</span><span class="n">param_grid_RNN</span><span class="p">,</span> 
+                <span class="n">inner</span><span class="o">=</span><span class="n">inner</span><span class="p">,</span> <span class="n">search_method</span><span class="o">=</span><span class="s1">&#39;optuna&#39;</span><span class="p">,</span> <span class="n">scoring</span><span class="o">=</span><span class="s1">&#39;balanced_accuracy&#39;</span><span class="p">,</span> <span class="n">direction</span><span class="o">=</span><span class="s1">&#39;maximize&#39;</span><span class="p">,</span> 
+                <span class="n">n_trials</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">123</span><span class="p">,</span> 
+                <span class="n">framework</span><span class="o">=</span><span class="s1">&#39;PyTorch&#39;</span><span class="p">,</span> 
+                <span class="n">input_dim</span><span class="o">=</span><span class="n">input_dim</span><span class="p">,</span>
+                <span class="n">output_dim</span><span class="o">=</span><span class="n">output_dim</span><span class="p">)</span>
+
+<span class="n">simple_eval</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">X_MFCC_tensor_train</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">Y_train_tensor</span><span class="o">.</span><span class="n">long</span><span class="p">())</span>
+<span class="n">inner_score</span><span class="p">[</span><span class="n">model</span><span class="p">]</span> <span class="o">=</span> <span class="n">simple_eval</span><span class="o">.</span><span class="n">inner_score</span>
+<span class="n">best_params</span><span class="p">[</span><span class="n">model</span><span class="p">]</span><span class="o">=</span> <span class="n">simple_eval</span><span class="o">.</span><span class="n">inner_best_params</span>
+<span class="n">inner_results</span><span class="p">[</span><span class="n">model</span><span class="p">]</span> <span class="o">=</span> <span class="n">simple_eval</span><span class="o">.</span><span class="n">inner_results</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[I 2024-04-16 17:55:50,367] A new study created in memory with name: no-name-5987d063-91d8-4e87-bb8a-845f53459244
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="saving-the-results">
+<h4>Saving the results<a class="headerlink" href="#saving-the-results" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">with open(&#39;results/best_params_4&#39;, &#39;wb&#39;) as file:</span>
+<span class="sd">    pickle.dump(best_params, file)</span>
+
+<span class="sd">with open(&#39;results/inner_scores_4&#39;, &#39;wb&#39;) as file:</span>
+<span class="sd">    pickle.dump(inner_score, file)</span>
+
+<span class="sd">with open(&#39;results/inner_results_4&#39;, &#39;wb&#39;) as file:</span>
+<span class="sd">    pickle.dump(inner_results, file)</span>
+<span class="sd">&#39;&#39;&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="opening-the-results">
+<h4>Opening the results<a class="headerlink" href="#opening-the-results" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;results/best_params_4&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+        <span class="n">best_params</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;results/inner_scores_4&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+        <span class="n">inner_score</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;results/inner_results_4&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+        <span class="n">inner_results</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="selecting-the-best-pipeline">
+<h3><strong>Selecting the best pipeline</strong><a class="headerlink" href="#selecting-the-best-pipeline" title="Link to this heading">#</a></h3>
+<p>In this case we don’t have several alternatives to compare, since we have only one, a RNN using sequential features extracted with MFCC method.</p>
+<p>The inner obtained balanced accuracy  for the optimal RNN is quite poor, which could be due to a bad specification of the model or the input data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">inner_score</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;RNN&#39;: 0.4431818181818182}
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Inner_Evaluation_3.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><strong>Parkinson Severity Classification: Inner Evaluation 3</strong></p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Inner_Evaluation_5.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><strong>Parkinson Severity Classification: Inner Evaluation 5</strong></p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#requirements"><strong>Requirements</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-definition"><strong>Data definition</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#outer-validation-method-train-test-split"><strong>Outer validation method: train-test split</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#applying-inner-evaluation"><strong>Applying Inner Evaluation</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inner-validation-method-kfold-cross-validation"><strong>Inner validation method: KFold Cross Validation</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#grids-for-hpo"><strong>Grids for HPO</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#grid-for-rnn-pytorch">Grid for RNN (PyTorch)</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hpo"><strong>HPO</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#hpo-for-rnn-pytorch">HPO for RNN (PyTorch)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#saving-the-results">Saving the results</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#opening-the-results">Opening the results</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#selecting-the-best-pipeline"><strong>Selecting the best pipeline</strong></a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Fabio Scielzo Ortiz
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

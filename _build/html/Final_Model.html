@@ -1,0 +1,794 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Parkinson Severity Classification: Final Model &#8212; Parkinson Severity Detection</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Final_Model';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Parkinson Severity Classification: Outer Evaluation" href="Outer_Evaluation.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.jpeg" class="logo__image only-light" alt="Parkinson Severity Detection - Home"/>
+    <script>document.write(`<img src="_static/logo.jpeg" class="logo__image only-dark" alt="Parkinson Severity Detection - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Welcome to your Jupyter Book
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Audio_Processing.html"><strong>Parkinson Severity Classification: Audio Processing</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="Inner_Evaluation_1.html"><strong>Parkinson Severity Classification: Inner Evaluation 1</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="Inner_Evaluation_2.html"><strong>Parkinson Severity Classification: Inner Evaluation 2</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="Inner_Evaluation_3.html"><strong>Parkinson Severity Classification: Inner Evaluation 3</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="Inner_Evaluation_4.html"><strong>Parkinson Severity Classification: Inner Evaluation 4</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="Inner_Evaluation_5.html"><strong>Parkinson Severity Classification: Inner Evaluation 5</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="Best_Pipeline_Selection.html"><strong>Parkinson Severity Classification: Selecting the best pipeline</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="Outer_Evaluation.html"><strong>Parkinson Severity Classification: Outer Evaluation</strong></a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#"><strong>Parkinson Severity Classification: Final Model</strong></a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/FabioScielzoOrtiz/Parkinson-Level-Detection" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/FabioScielzoOrtiz/Parkinson-Level-Detection/issues/new?title=Issue%20on%20page%20%2FFinal_Model.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/Final_Model.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Parkinson Severity Classification: Final Model</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#requirements"><strong>Requirements</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-definition"><strong>Data definition</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#saving-the-final-model"><strong>Saving the final model</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#predicting-new-data"><strong>Predicting new data</strong></a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="parkinson-severity-classification-final-model">
+<h1><strong>Parkinson Severity Classification: Final Model</strong><a class="headerlink" href="#parkinson-severity-classification-final-model" title="Link to this heading">#</a></h1>
+<blockquote>
+<div><p><strong>The next step is to save the best model and let it ready for predicting the Parkinson disease level of new patients.</strong></p>
+</div></blockquote>
+<section id="requirements">
+<h2><strong>Requirements</strong><a class="headerlink" href="#requirements" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span>  <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">polars</span> <span class="k">as</span> <span class="nn">pl</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">pickle</span>
+<span class="kn">from</span> <span class="nn">sklearn.neural_network</span> <span class="kn">import</span> <span class="n">MLPClassifier</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set_style</span><span class="p">(</span><span class="s1">&#39;whitegrid&#39;</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">combinations</span>
+<span class="kn">import</span> <span class="nn">joblib</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;C:\Users\fscielzo\Documents\Packages\PyAudio_Package_Private&#39;</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">PyAudio</span> <span class="kn">import</span> <span class="n">get_X_audio_features</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;C:\Users\fscielzo\Documents\DataScience-GitHub\Audio Analysis\Parkinson_Severity_Classification\results\final_best_method&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+            <span class="n">final_best_method</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;C:\Users\fscielzo\Documents\DataScience-GitHub\Audio Analysis\Parkinson_Severity_Classification\results\final_best_stats&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+        <span class="n">final_best_stats</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;C:\Users\fscielzo\Documents\DataScience-GitHub\Audio Analysis\Parkinson_Severity_Classification\results\final_best_model&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+        <span class="n">final_best_model</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;C:\Users\fscielzo\Documents\DataScience-GitHub\Audio Analysis\Parkinson_Severity_Classification\results\best_params_3&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+        <span class="n">best_params</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="data-definition">
+<h2><strong>Data definition</strong><a class="headerlink" href="#data-definition" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">files_list_name</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;C:\Users\fscielzo\Documents\DataScience-GitHub\Audio Analysis\Parkinson_Severity_Classification\Data\Files_List.txt&#39;</span>
+<span class="n">files_df</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">files_list_name</span><span class="p">,</span> <span class="n">separator</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">has_header</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">new_columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;path&#39;</span><span class="p">,</span> <span class="s1">&#39;level&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fs</span> <span class="o">=</span> <span class="mi">16000</span> <span class="c1"># Sampling frequency</span>
+<span class="n">wst</span> <span class="o">=</span> <span class="mf">0.032</span> <span class="c1"># Window size (seconds)</span>
+<span class="n">fpt</span> <span class="o">=</span> <span class="mf">0.008</span> <span class="c1"># Frame period (seconds)</span>
+<span class="n">nfft</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">wst</span><span class="o">*</span><span class="n">fs</span><span class="p">))</span> <span class="c1"># Window size (samples)</span>
+<span class="n">fp</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">fpt</span><span class="o">*</span><span class="n">fs</span><span class="p">))</span> <span class="c1"># Frame period (samples)</span>
+<span class="n">nbands</span> <span class="o">=</span> <span class="mi">40</span> <span class="c1"># Number of filters in the filterbank</span>
+<span class="n">ncomp</span> <span class="o">=</span> <span class="mi">20</span> <span class="c1"># Number of MFCC components</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Y</span> <span class="o">=</span> <span class="n">files_df</span><span class="p">[</span><span class="s1">&#39;level&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+
+<span class="n">simple_methods</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;MFCC&#39;</span><span class="p">,</span> <span class="s1">&#39;spectral_centroid&#39;</span><span class="p">,</span> <span class="s1">&#39;chroma&#39;</span><span class="p">,</span> <span class="s1">&#39;spectral_bandwidth&#39;</span><span class="p">,</span> 
+                  <span class="s1">&#39;spectral_contrast&#39;</span><span class="p">,</span> <span class="s1">&#39;spectral_rolloff&#39;</span><span class="p">,</span> <span class="s1">&#39;zero_crossing_rate&#39;</span><span class="p">,</span> <span class="s1">&#39;tempogram&#39;</span><span class="p">]</span>
+
+<span class="n">combined_methods</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="n">stats</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;mean-std&#39;</span><span class="p">,</span> <span class="s1">&#39;median-std&#39;</span><span class="p">,</span> <span class="s1">&#39;mean-median-std&#39;</span><span class="p">,</span> <span class="s1">&#39;mean-Q25-median-Q75-std&#39;</span><span class="p">]</span>
+
+<span class="n">sizes</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">simple_methods</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="n">combined_methods</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;-&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">combi</span><span class="p">))</span> <span class="k">for</span> <span class="n">size</span> <span class="ow">in</span> <span class="n">sizes</span> <span class="k">for</span> <span class="n">combi</span> <span class="ow">in</span> <span class="n">combinations</span><span class="p">(</span><span class="n">simple_methods</span><span class="p">,</span> <span class="n">size</span><span class="p">)]</span>
+
+<span class="n">X_stats</span><span class="p">,</span> <span class="n">X_stats_train</span><span class="p">,</span> <span class="n">X_stats_test</span> <span class="o">=</span> <span class="p">{</span><span class="n">method</span><span class="p">:</span> <span class="p">{}</span> <span class="k">for</span> <span class="n">method</span> <span class="ow">in</span> <span class="n">simple_methods</span> <span class="o">+</span> <span class="n">combined_methods</span><span class="p">},</span> <span class="p">{</span><span class="n">method</span><span class="p">:</span> <span class="p">{}</span> <span class="k">for</span> <span class="n">method</span> <span class="ow">in</span> <span class="n">simple_methods</span> <span class="o">+</span> <span class="n">combined_methods</span><span class="p">},</span> <span class="p">{</span><span class="n">method</span><span class="p">:</span> <span class="p">{}</span> <span class="k">for</span> <span class="n">method</span> <span class="ow">in</span> <span class="n">simple_methods</span> <span class="o">+</span> <span class="n">combined_methods</span><span class="p">}</span>
+
+<span class="k">for</span> <span class="n">method</span> <span class="ow">in</span> <span class="n">simple_methods</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">stat</span> <span class="ow">in</span> <span class="n">stats</span><span class="p">:</span>
+
+        <span class="n">X_stats</span><span class="p">[</span><span class="n">method</span><span class="p">][</span><span class="n">stat</span><span class="p">]</span> <span class="o">=</span> <span class="n">get_X_audio_features</span><span class="p">(</span><span class="n">paths</span><span class="o">=</span><span class="n">files_df</span><span class="p">[</span><span class="s1">&#39;path&#39;</span><span class="p">],</span> <span class="n">method</span><span class="o">=</span><span class="n">method</span><span class="p">,</span> <span class="n">stats</span><span class="o">=</span><span class="n">stat</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="n">fs</span><span class="p">,</span> <span class="n">n_fft</span><span class="o">=</span><span class="n">nfft</span><span class="p">,</span> <span class="n">hop_length</span><span class="o">=</span><span class="n">fp</span><span class="p">,</span> <span class="n">n_mels</span><span class="o">=</span><span class="n">nbands</span><span class="p">,</span> <span class="n">n_mfcc</span><span class="o">=</span><span class="n">ncomp</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">method</span> <span class="ow">in</span> <span class="n">combined_methods</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">stat</span> <span class="ow">in</span> <span class="n">stats</span><span class="p">:</span>
+
+        <span class="n">X_stats</span><span class="p">[</span><span class="n">method</span><span class="p">][</span><span class="n">stat</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">([</span><span class="n">X_stats</span><span class="p">[</span><span class="n">method</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)[</span><span class="n">i</span><span class="p">]][</span><span class="n">stat</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">method</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)))])</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="saving-the-final-model">
+<h2><strong>Saving the final model</strong><a class="headerlink" href="#saving-the-final-model" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initializing th ebest model with its best params</span>
+<span class="n">final_model</span> <span class="o">=</span> <span class="n">MLPClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">123</span><span class="p">)</span><span class="o">.</span><span class="n">set_params</span><span class="p">(</span><span class="o">**</span><span class="n">best_params</span><span class="p">[</span><span class="n">final_best_method</span><span class="p">][</span><span class="n">final_best_stats</span><span class="p">][</span><span class="n">final_best_model</span><span class="p">])</span>
+<span class="c1"># Training the model with all the available data, using the predictors matrix obtained with the best method for feature extraction</span>
+<span class="n">final_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">X_stats</span><span class="p">[</span><span class="n">final_best_method</span><span class="p">][</span><span class="n">final_best_stats</span><span class="p">],</span> <span class="n">y</span><span class="o">=</span><span class="n">Y</span><span class="p">)</span>
+<span class="c1"># Saving the model already initialized and trained</span>
+<span class="n">joblib</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">final_model</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;C:\Users\fscielzo\Documents\DataScience-GitHub\Audio Analysis\Parkinson_Severity_Classification\results\final_model.joblib&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="predicting-new-data">
+<h2><strong>Predicting new data</strong><a class="headerlink" href="#predicting-new-data" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Loading the saved model</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">final_model</span> <span class="o">=</span> <span class="n">joblib</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;C:\Users\fscielzo\Documents\DataScience-GitHub\Audio Analysis\Parkinson_Severity_Classification\results\final_model.joblib&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">final_best_method</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;MFCC-chroma-spectral_bandwidth-spectral_contrast-zero_crossing_rate&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">final_best_stats</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;mean-Q25-median-Q75-std&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>Loading a new audio and extracting its features to be used for predicting its class.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Image that this audio would be the audio of a new patient</span>
+<span class="n">new_audio_file</span> <span class="o">=</span> <span class="s1">&#39;PDSpeechData/loc17/loc17_s01.wav&#39;</span> 
+
+<span class="n">individual_methods</span> <span class="o">=</span> <span class="n">final_best_method</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)</span>
+
+<span class="n">X_stats_new</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">method</span> <span class="ow">in</span> <span class="n">individual_methods</span><span class="p">:</span>
+    <span class="n">X_stats_new</span><span class="p">[</span><span class="n">method</span><span class="p">]</span> <span class="o">=</span> <span class="n">get_X_audio_features</span><span class="p">(</span><span class="n">paths</span><span class="o">=</span><span class="p">[</span><span class="n">new_audio_file</span><span class="p">],</span> <span class="n">method</span><span class="o">=</span><span class="n">method</span><span class="p">,</span> <span class="n">stats</span><span class="o">=</span><span class="n">final_best_stats</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="n">fs</span><span class="p">,</span> <span class="n">n_fft</span><span class="o">=</span><span class="n">nfft</span><span class="p">,</span> <span class="n">hop_length</span><span class="o">=</span><span class="n">fp</span><span class="p">,</span> <span class="n">n_mels</span><span class="o">=</span><span class="n">nbands</span><span class="p">,</span> <span class="n">n_mfcc</span><span class="o">=</span><span class="n">ncomp</span><span class="p">)</span>
+
+<span class="n">X_stats_new</span><span class="p">[</span><span class="n">final_best_method</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">([</span><span class="n">X_stats_new</span><span class="p">[</span><span class="n">method</span><span class="p">]</span> <span class="k">for</span> <span class="n">method</span> <span class="ow">in</span> <span class="n">individual_methods</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_stats_new</span><span class="p">[</span><span class="n">final_best_method</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[-1.85570816e+02,  9.09455872e+01, -2.44680901e+01,
+        -7.04029322e+00, -1.81235161e+01,  1.39041967e+01,
+        -2.44391179e+00, -5.16143751e+00,  2.11006179e-01,
+        -7.74400330e+00,  2.35691810e+00, -2.67633553e+01,
+         5.93925667e+00, -1.15721340e+01, -4.94519901e+00,
+         5.14253676e-01, -5.60667944e+00, -6.44442844e+00,
+        -1.17365682e+00, -7.13852310e+00, -1.89633648e+02,
+         8.78949642e+01, -2.86219001e+01, -8.75667405e+00,
+        -2.10318441e+01,  1.22900267e+01, -4.22333467e+00,
+        -7.48853457e+00, -2.43984455e+00, -9.48855925e+00,
+         1.24283183e+00, -2.94770994e+01,  4.33485985e+00,
+        -1.30440550e+01, -6.32022858e+00, -8.08254302e-01,
+        -6.70881236e+00, -8.22138071e+00, -2.99997491e+00,
+        -8.18231726e+00, -1.78737259e+02,  9.08615875e+01,
+        -2.59062710e+01, -7.23408175e+00, -1.86913033e+01,
+         1.43382187e+01, -1.84077740e+00, -5.62563133e+00,
+         9.03636396e-01, -7.57154369e+00,  2.89028454e+00,
+        -2.75321198e+01,  5.99315166e+00, -1.17777500e+01,
+        -4.63353157e+00,  6.95228815e-01, -5.28252792e+00,
+        -6.28008127e+00, -1.39672756e-01, -7.07232285e+00,
+        -1.72016666e+02,  9.48241558e+01, -2.17102180e+01,
+        -5.72324336e+00, -1.59190898e+01,  1.62780442e+01,
+        -5.05787343e-01, -3.74578071e+00,  2.97263265e+00,
+        -6.07587433e+00,  4.47198141e+00, -2.49392586e+01,
+         7.43928492e+00, -1.05807405e+01, -3.53231090e+00,
+         2.11837941e+00, -4.14229715e+00, -4.89462614e+00,
+         1.01112199e+00, -6.14946342e+00,  3.44640160e+01,
+         8.54371929e+00,  6.75597477e+00,  3.24377370e+00,
+         4.74247742e+00,  3.56070065e+00,  3.60298586e+00,
+         4.35234976e+00,  3.89350390e+00,  3.08828521e+00,
+         3.20561314e+00,  4.40958166e+00,  2.33475471e+00,
+         2.49087715e+00,  2.19335175e+00,  2.81028867e+00,
+         2.50210786e+00,  2.40119553e+00,  3.29892015e+00,
+         1.92691517e+00,  2.68232167e-01,  9.74107757e-02,
+         7.84232393e-02,  1.81179240e-01,  1.34862140e-01,
+         1.35297760e-01,  2.20617712e-01,  4.52856570e-01,
+         8.93089771e-01,  6.17546499e-01,  2.48015136e-01,
+         2.03347132e-01,  1.82855524e-01,  3.42847975e-02,
+         3.22547620e-02,  1.58063572e-01,  6.69326093e-02,
+         8.18430148e-02,  1.53404191e-01,  2.72765324e-01,
+         8.62154603e-01,  3.47047240e-01,  1.29612152e-01,
+         1.12793140e-01,  2.53752053e-01,  5.90377823e-02,
+         5.17480709e-02,  1.83818281e-01,  1.06828719e-01,
+         1.07313737e-01,  1.99755162e-01,  3.83032024e-01,
+         1.00000000e+00,  5.70766330e-01,  1.79053977e-01,
+         1.67406633e-01,  2.96096116e-01,  1.27084665e-01,
+         9.71525591e-02,  1.98757619e-01,  1.87182598e-01,
+         1.38937242e-01,  2.51306139e-01,  5.84615633e-01,
+         1.00000000e+00,  9.77550074e-01,  3.08580481e-01,
+         2.44446613e-01,  1.44635484e-01,  1.06388748e-01,
+         9.08590853e-02,  7.64739513e-02,  9.36693773e-02,
+         1.01360939e-01,  1.32439837e-01,  2.51666516e-01,
+         1.92621216e-01,  2.88530469e-01,  1.68179289e-01,
+         1.37687087e-01,  1.10841622e+03,  1.03688598e+03,
+         1.10835233e+03,  1.16289666e+03,  1.35345014e+02,
+         1.59233145e+01,  1.97263040e+01,  1.97874896e+01,
+         2.19017376e+01,  2.17854443e+01,  2.71397313e+01,
+         2.06653908e+01,  1.29470125e+01,  1.80485732e+01,
+         1.77418782e+01,  1.95303016e+01,  1.93713544e+01,
+         2.53756767e+01,  1.80994219e+01,  1.55093246e+01,
+         1.94724328e+01,  1.98857833e+01,  2.19474409e+01,
+         2.15898569e+01,  2.73392028e+01,  2.00202393e+01,
+         1.83502822e+01,  2.14509713e+01,  2.20797367e+01,
+         2.45153179e+01,  2.40613377e+01,  2.90980859e+01,
+         2.25949269e+01,  4.90878185e+00,  3.72218075e+00,
+         3.96292597e+00,  4.04428607e+00,  3.77969961e+00,
+         3.19132955e+00,  3.90431497e+00,  7.52911218e-02,
+         7.51953125e-02,  7.61718750e-02,  7.76367188e-02,
+         6.54263855e-03]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_stats_new</span><span class="p">[</span><span class="n">final_best_method</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1, 205)
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>We predict the new audio with the pre-trained model.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">final_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">X_stats_new</span><span class="p">[</span><span class="n">final_best_method</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0], dtype=int64)
+</pre></div>
+</div>
+</div>
+</div>
+<p>The new patient is predicted as class 0 (normal).</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Outer_Evaluation.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><strong>Parkinson Severity Classification: Outer Evaluation</strong></p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#requirements"><strong>Requirements</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-definition"><strong>Data definition</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#saving-the-final-model"><strong>Saving the final model</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#predicting-new-data"><strong>Predicting new data</strong></a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Fabio Scielzo Ortiz
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
