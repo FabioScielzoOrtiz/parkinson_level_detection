@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Parkinson Severity Classification: Selecting the best pipeline &#8212; Parkinson Severity Detection</title>
+    <title>Selecting the best pipeline &#8212; Parkinson Severity Detection</title>
   
   
   
@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
@@ -60,8 +60,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'Best_Pipeline_Selection';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Parkinson Severity Classification: Outer Evaluation" href="Outer_Evaluation.html" />
-    <link rel="prev" title="Parkinson Severity Classification: Inner Evaluation 5" href="Inner_Evaluation_5.html" />
+    <link rel="next" title="Outer Evaluation" href="Outer_Evaluation.html" />
+    <link rel="prev" title="Inner Evaluation 5" href="Inner_Evaluation_5.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -177,15 +177,15 @@
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="Audio_Processing.html"><strong>Parkinson Severity Classification: Audio Processing</strong></a></li>
-<li class="toctree-l1"><a class="reference internal" href="Inner_Evaluation_1.html"><strong>Parkinson Severity Classification: Inner Evaluation 1</strong></a></li>
-<li class="toctree-l1"><a class="reference internal" href="Inner_Evaluation_2.html"><strong>Parkinson Severity Classification: Inner Evaluation 2</strong></a></li>
-<li class="toctree-l1"><a class="reference internal" href="Inner_Evaluation_3.html"><strong>Parkinson Severity Classification: Inner Evaluation 3</strong></a></li>
-<li class="toctree-l1"><a class="reference internal" href="Inner_Evaluation_4.html"><strong>Parkinson Severity Classification: Inner Evaluation 4</strong></a></li>
-<li class="toctree-l1"><a class="reference internal" href="Inner_Evaluation_5.html"><strong>Parkinson Severity Classification: Inner Evaluation 5</strong></a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#"><strong>Parkinson Severity Classification: Selecting the best pipeline</strong></a></li>
-<li class="toctree-l1"><a class="reference internal" href="Outer_Evaluation.html"><strong>Parkinson Severity Classification: Outer Evaluation</strong></a></li>
-<li class="toctree-l1"><a class="reference internal" href="Final_Model.html"><strong>Parkinson Severity Classification: Final Model</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="Audio_Processing.html"><strong>Audio Processing</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="Inner_Evaluation_1.html"><strong>Inner Evaluation 1</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="Inner_Evaluation_2.html"><strong>Inner Evaluation 2</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="Inner_Evaluation_3.html"><strong>Inner Evaluation 3</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="Inner_Evaluation_4.html"><strong>Inner Evaluation 4</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="Inner_Evaluation_5.html"><strong>Inner Evaluation 5</strong></a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#"><strong>Selecting the best pipeline</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="Outer_Evaluation.html"><strong>Outer Evaluation</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="Final_Model.html"><strong>Final Model</strong></a></li>
 </ul>
 
     </div>
@@ -371,7 +371,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Parkinson Severity Classification: Selecting the best pipeline</h1>
+    <h1>Selecting the best pipeline</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -382,7 +382,7 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#requirements"><strong>Requirements</strong></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#selecting-the-best-pipeline"><strong>Selecting the best pipeline</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1"><strong>Selecting the best pipeline</strong></a></li>
 </ul>
             </nav>
         </div>
@@ -394,8 +394,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="parkinson-severity-classification-selecting-the-best-pipeline">
-<h1><strong>Parkinson Severity Classification: Selecting the best pipeline</strong><a class="headerlink" href="#parkinson-severity-classification-selecting-the-best-pipeline" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="selecting-the-best-pipeline">
+<h1><strong>Selecting the best pipeline</strong><a class="headerlink" href="#selecting-the-best-pipeline" title="Link to this heading">#</a></h1>
 <blockquote>
 <div><p><strong>In this section we are going to rank all the pipelines (preprocessing + model) according to the inner evaluation results (considering all the rounds). In a nutshell, we are going to identify the best pipeline over all.</strong></p>
 </div></blockquote>
@@ -413,8 +413,8 @@ document.write(`
 </div>
 </div>
 </section>
-<section id="selecting-the-best-pipeline">
-<h2><strong>Selecting the best pipeline</strong><a class="headerlink" href="#selecting-the-best-pipeline" title="Link to this heading">#</a></h2>
+<section id="id1">
+<h2><strong>Selecting the best pipeline</strong><a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
 <p>We rank the all the alternatives that we have evaluated (1046 in total!) according to their inner balanced accuracy, and highlight the best one, that will be the one chosen as final pipeline, and it would be the one we would use for classifying new patients.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -574,7 +574,7 @@ The best model hyper-parameters are:  {&#39;learning_rate_init&#39;: 0.000723003
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><strong>Parkinson Severity Classification: Inner Evaluation 5</strong></p>
+        <p class="prev-next-title"><strong>Inner Evaluation 5</strong></p>
       </div>
     </a>
     <a class="right-next"
@@ -582,7 +582,7 @@ The best model hyper-parameters are:  {&#39;learning_rate_init&#39;: 0.000723003
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><strong>Parkinson Severity Classification: Outer Evaluation</strong></p>
+        <p class="prev-next-title"><strong>Outer Evaluation</strong></p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -603,7 +603,7 @@ The best model hyper-parameters are:  {&#39;learning_rate_init&#39;: 0.000723003
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#requirements"><strong>Requirements</strong></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#selecting-the-best-pipeline"><strong>Selecting the best pipeline</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1"><strong>Selecting the best pipeline</strong></a></li>
 </ul>
   </nav></div>
 
